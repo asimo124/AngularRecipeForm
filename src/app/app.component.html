@@ -3,15 +3,7 @@
     <div class="logo"
          [style.background]="'url(assets/img/leaf.png)'"></div>
     <div class="logo-text">Recipe Form</div>
-    <div style="float: right">
-      <a nz-button nzType="default" [href]="'https://api.hawleywebdesign.com/ri-recipe/top-recipes'" [target]="'_blank'">Top Recipes</a>&nbsp;
-      <ng-container *ngIf="page == 'recipe-form'">
-        <a nz-button nzType="primary" [routerLink]="'ingredient-form'">Ingredients</a>
-      </ng-container>
-      <ng-container *ngIf="page == 'ingredient-form'">
-        <a nz-button nzType="primary" [routerLink]="''">Add Recipe</a>
-      </ng-container>
-    </div>
+
     <!--    <ul nz-menu nzTheme="dark" nzMode="horizontal">-->
     <!--      <li nz-menu-item>nav 1</li>-->
     <!--    </ul>-->
@@ -24,6 +16,16 @@
     <!--    </nz-breadcrumb>-->
     <div class="inner-content" >
 
+      <div style="float: right">
+        <a nz-button nzType="default" [href]="'https://api.hawleywebdesign.com/ri-recipe/top-recipes'" [target]="'_blank'">Top Recipes</a>&nbsp;
+        <ng-container *ngIf="page == 'recipe-form'">
+          <a nz-button nzType="primary" [routerLink]="'ingredient-form'">Ingredients</a>
+        </ng-container>
+        <ng-container *ngIf="page == 'ingredient-form'">
+          <a nz-button nzType="primary" [routerLink]="''">Add Recipe</a>
+        </ng-container>
+      </div>
+      <div style="clear: both; height: 17px;"></div>
       <router-outlet></router-outlet>
 
     </div>
