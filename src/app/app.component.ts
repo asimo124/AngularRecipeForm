@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {RecipeFormService} from './services/recipe-form.service';
 import {Subscription} from 'rxjs';
 import {Recipe} from './models/recipe-form';
 import {NzMessageService} from 'ng-zorro-antd';
+import {NavigationEnd, Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,90 +12,31 @@ import {NzMessageService} from 'ng-zorro-antd';
 })
 export class AppComponent implements OnInit {
 
-  subs: Subscription[] = [];
+  page = 'recipe-form';
 
+  constructor(private router: Router) {
 
+    router.events.subscribe((val) => {
 
-  proteinItems = [];
-  difficultyLevelItems = [];
-
-  recipeItem: Recipe = {
-    title: '',
-    rating: '',
-    lastDateMade: new Date(),
-    containsSalad: false,
-    containsGluten: false,
-    proteinId: 0,
-    difficultyLevelId: 0,
-    isHomeChef: false,
-    isEasy: false,
-  };
-
-  titleInvalid = false;
-
-  constructor(
-    private recipeFormService: RecipeFormService,
-    private messageService: NzMessageService
-              ) {
-
+      const self = this;
+      Object.keys(val).forEach(function getKey(key) {
+        if (key === 'routerEvent') {
+          Object.keys(val[key]).forEach(function getNextKey(nextKey) {
+            if (nextKey === 'url') {
+              if (val[key][nextKey] === '/ingredient-form') {
+                self.page = 'ingredient-form';
+              } else {
+                self.page = 'recipe-form';
+              }
+            }
+          });
+        }
+      });
+    });
   }
 
   ngOnInit(): void {
 
-    this.subs.push(this.recipeFormService.proteinList.subscribe(response => {
-      if (response.items) {
-        this.proteinItems = response.items;
-      }
-    }));
-
-    this.subs.push(this.recipeFormService.difficultyLevelsList.subscribe(response => {
-      if (response.items) {
-        this.difficultyLevelItems = response.items;
-      }
-    }));
-
-    // get and subscribe to Recipe Created List
-    this.subs.push(this.recipeFormService.recipeCreatedList.subscribe(response => {
-      if (response) {
-        this.recipeItem = {
-          title: '',
-          rating: '',
-          lastDateMade: new Date(),
-          containsSalad: false,
-          containsGluten: false,
-          proteinId: 0,
-          difficultyLevelId: 0,
-          isHomeChef: false,
-          isEasy: false,
-        };
-      }
-    }));
-
-    this.recipeFormService.getProteins();
-    this.recipeFormService.getDifficultyLevels();
-  }
-
-  onDateChange(date2) {
-
-  }
-
-  validateForm() {
-
-    this.titleInvalid = false;
-
-    if (!this.recipeItem.title) {
-      this.titleInvalid = true;
-      return false;
-    }
-    return true;
-  }
-
-  submitForm() {
-
-    if (!this.validateForm()) {
-      this.messageService.create('error', 'Missing required fields');
-    } else {
-      this.recipeFormService.createRecipe(this.recipeItem);
-    }
+    localStorage.removeItem('newRecipeItemId');
   }
 }

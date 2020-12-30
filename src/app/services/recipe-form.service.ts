@@ -10,7 +10,7 @@ import {NzMessageService} from 'ng-zorro-antd';
 })
 export class RecipeFormService {
 
-  private recipeCreated = [];
+  private recipeCreated: any = {};
   private recipeCreatedSource = new BehaviorSubject(this.recipeCreated);
   public recipeCreatedList = this.recipeCreatedSource.asObservable();
 

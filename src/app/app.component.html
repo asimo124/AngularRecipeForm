@@ -3,7 +3,15 @@
     <div class="logo"
          [style.background]="'url(assets/img/leaf.png)'"></div>
     <div class="logo-text">Recipe Form</div>
-    <div style="float: right"><button nz-button nzType="primary">Ingredients</button></div>
+    <div style="float: right">
+      <a nz-button nzType="default" [href]="'https://api.hawleywebdesign.com/ri-recipe/top-recipes'" [target]="'_blank'">Top Recipes</a>&nbsp;
+      <ng-container *ngIf="page == 'recipe-form'">
+        <a nz-button nzType="primary" [routerLink]="'ingredient-form'">Ingredients</a>
+      </ng-container>
+      <ng-container *ngIf="page == 'ingredient-form'">
+        <a nz-button nzType="primary" [routerLink]="''">Add Recipe</a>
+      </ng-container>
+    </div>
     <!--    <ul nz-menu nzTheme="dark" nzMode="horizontal">-->
     <!--      <li nz-menu-item>nav 1</li>-->
     <!--    </ul>-->
@@ -16,86 +24,7 @@
     <!--    </nz-breadcrumb>-->
     <div class="inner-content" >
 
-      <form nz-form >
-        <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="email">Title</nz-form-label>
-          <nz-form-control [nzSm]="14" [nzXs]="24" >
-            <input nz-input
-                   [(ngModel)]="recipeItem.title"
-                   name="title"
-                   id="title"
-                   [style.border]="(titleInvalid) ? 'solid 1px red' : ''"
-            />
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="email">Rating</nz-form-label>
-          <nz-form-control [nzSm]="14" [nzXs]="24" >
-            <input nz-input [(ngModel)]="recipeItem.rating" name="rating" id="rating" />
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="email">Last Date Made</nz-form-label>
-          <nz-form-control [nzSm]="14" [nzXs]="24" >
-            <nz-date-picker
-              name="lastDateMade"
-              [(ngModel)]="recipeItem.lastDateMade"
-              (ngModelChange)="onDateChange($event)"
-              [nzFormat]="'MM/dd/yyyy'"
-            ></nz-date-picker>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item>
-          <nz-col [nzSm]="6" [nzXs]="24"></nz-col>
-          <nz-form-control [nzSm]="14" [nzXs]="24" >
-            <label nz-checkbox name="containsSalad" [(ngModel)]="recipeItem.containsSalad">Contains Salad</label>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item>
-          <nz-col [nzSm]="6" [nzXs]="24"></nz-col>
-          <nz-form-control [nzSm]="14" [nzXs]="24" >
-            <label nz-checkbox name="containsGluten" [(ngModel)]="recipeItem.containsGluten">Contains Gluten</label>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="email">Protein</nz-form-label>
-          <nz-form-control [nzSm]="14" [nzXs]="24" >
-            <nz-select name="proteinId" [(ngModel)]="recipeItem.proteinId">
-              <ng-container *ngFor="let protein of proteinItems">
-                <nz-option [nzValue]="protein.id" [nzLabel]="protein.title"></nz-option>
-              </ng-container>
-            </nz-select>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="email">Difficulty Level</nz-form-label>
-          <nz-form-control [nzSm]="14" [nzXs]="24" >
-            <nz-select name="difficultyLevelId" [(ngModel)]="recipeItem.difficultyLevelId">
-              <ng-container *ngFor="let difficultyLevel of difficultyLevelItems">
-                <nz-option [nzValue]="difficultyLevel.id" [nzLabel]="difficultyLevel.title"></nz-option>
-              </ng-container>
-            </nz-select>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item>
-          <nz-col [nzSm]="6" [nzXs]="24"></nz-col>
-          <nz-form-control [nzSm]="14" [nzXs]="24" >
-            <label nz-checkbox name="isHomeChef" [(ngModel)]="recipeItem.isHomeChef">Is Home Chef Recipe</label>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item>
-          <nz-col [nzSm]="6" [nzXs]="24"></nz-col>
-          <nz-form-control [nzSm]="14" [nzXs]="24" >
-            <label nz-checkbox name="isEasy" [(ngModel)]="recipeItem.isEasy">Is Easy</label>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item>
-          <nz-col [nzSm]="6" [nzXs]="24"></nz-col>
-          <nz-col [nzSm]="14" [nzXs]="24">
-            <button nz-button nzType="primary" (click)="submitForm()">Create</button>
-          </nz-col>
-        </nz-form-item>
-      </form>
+      <router-outlet></router-outlet>
 
     </div>
   </nz-content>

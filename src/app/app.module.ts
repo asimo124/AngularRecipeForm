@@ -13,12 +13,16 @@ import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
+import { RecipeFormComponent } from './pages/recipe-form/recipe-form.component';
+import { IngredientFormComponent } from './pages/ingredient-form/ingredient-form.component';
 
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RecipeFormComponent,
+    IngredientFormComponent
   ],
   imports: [
     BrowserModule,
