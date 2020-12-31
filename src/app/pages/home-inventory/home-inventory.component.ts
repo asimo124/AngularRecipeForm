@@ -74,7 +74,7 @@ export class HomeInventoryComponent implements OnInit, OnDestroy {
   }
 
   removeIngredient(ingredientId: number) {
-    
+
     this.homeInventoryService.removeIngredient(ingredientId);
   }
 

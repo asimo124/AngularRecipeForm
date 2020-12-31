@@ -1,0 +1,77 @@
+<div class="recipes-list">
+  <div class="row" >
+    <div nz-row [nzGutter]="4">
+      <div nz-col [nzXs]="{ span: 10 }" [nzMd]="{ span: 8 }" >
+        Protein
+        <div style="clear: both;"></div>
+        <nz-select name="proteinId" [(ngModel)]="filters.proteinId" [style.width]="'100%'" nzAllowClear>
+          <ng-container *ngFor="let protein of proteinItems">
+            <nz-option [nzValue]="protein.id" [nzLabel]="protein.title"></nz-option>
+          </ng-container>
+        </nz-select>
+      </div>
+      <div nz-col [nzXs]="{ span: 6 }"  [nzMd]="{ span: 4 }" >
+        Frugal Mode
+        <div style="clear: both;"></div>
+        <nz-select name="frugalMode" [(ngModel)]="filters.frugalMode" [style.width]="'100%'" nzAllowClear>
+          <nz-option [nzValue]="true" [nzLabel]="'Yes'"></nz-option>
+          <nz-option [nzValue]="false" [nzLabel]="'No'"></nz-option>
+        </nz-select>
+      </div>
+      <div nz-col [nzXs]="{ span: 6 }"  [nzMd]="{ span: 4 }" >
+        Is Salad
+        <div style="clear: both;"></div>
+        <nz-select name="isSalad" [(ngModel)]="filters.isSalad" [style.width]="'100%'" nzAllowClear>
+          <nz-option [nzValue]="true" [nzLabel]="'Yes'"></nz-option>
+          <nz-option [nzValue]="false" [nzLabel]="'No'"></nz-option>
+        </nz-select>
+      </div>
+      <div nz-col [nzXs]="{ span: 6 }"  [nzMd]="{ span: 4 }" >
+        Homechef
+        <div style="clear: both;"></div>
+        <nz-select name="isHomechef" [(ngModel)]="filters.isHomechef" [style.width]="'100%'" nzAllowClear>
+          <nz-option [nzValue]="true" [nzLabel]="'Yes'"></nz-option>
+          <nz-option [nzValue]="false" [nzLabel]="'No'"></nz-option>
+        </nz-select>
+      </div>
+      <div nz-col [nzXs]="{ span: 6 }"  [nzMd]="{ span: 4 }" >
+        Easy
+        <div style="clear: both;"></div>
+        <nz-select name="isEasy" [(ngModel)]="filters.isEasy" [style.width]="'100%'" nzAllowClear>
+          <nz-option [nzValue]="true" [nzLabel]="'Yes'"></nz-option>
+          <nz-option [nzValue]="false" [nzLabel]="'No'"></nz-option>
+        </nz-select>
+      </div>
+      <div nz-col [nzXs]="{ span: 6 }" >
+        &nbsp;
+        <div style="clear: both;"></div>
+        <button nz-button [nzType]="'primary'" (click)="searchRecipes()">Search</button>
+      </div>
+    </div>
+    <div style="clear: both; height: 7px;"></div>
+    <nz-row [nzGutter]="[8, 8]">
+      <ng-container *ngFor="let recipe of topRecipeItems" >
+        <div class="recipe-col" nz-col [nzXs]="{ span: 12 }" [nzSm]="{ span: 8 }" [nzMd]="{ span: 6 }" >
+          <div class="inner-recipe-col">
+            <div class="img_holder">
+              <ng-container *ngIf="recipe.image_path" >
+                <img [src]="apiUrl + '/image.php?f=/' + recipe.image_path + '&w=150&h=220&effect=crop'" />
+              </ng-container>
+              <ng-container *ngIf="!recipe.image_path" >
+                <img src="https://via.placeholder.com/150x220.png" />
+              </ng-container>
+            </div>
+            <div style="clear: both; height: 12px;"></div>
+            <span class="recipe-title">{{ recipe.title }}</span>
+            <div style="clear: both; height: 7px;"></div>
+            <strong>Cooked on:</strong> {{ recipe.last_date_made }}
+            <div style="clear: both; height: 7px;"></div>
+            <strong>Flavors:</strong> {{ recipe.flavors }}
+            <div style="clear: both; height: 7px;"></div>
+            <strong>Owned Ingredients:</strong> {{ recipe.owned_ingredients }}
+          </div>
+        </div>
+      </ng-container>
+    </nz-row>
+  </div>
+</div>

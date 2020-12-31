@@ -16,6 +16,7 @@ import {NgZorroAntdModule} from 'ng-zorro-antd';
 import { RecipeFormComponent } from './pages/recipe-form/recipe-form.component';
 import { IngredientFormComponent } from './pages/ingredient-form/ingredient-form.component';
 import { HomeInventoryComponent } from './pages/home-inventory/home-inventory.component';
+import { TopRecipesComponent } from './pages/top-recipes/top-recipes.component';
 
 registerLocaleData(en);
 
@@ -24,7 +25,8 @@ registerLocaleData(en);
     AppComponent,
     RecipeFormComponent,
     IngredientFormComponent,
-    HomeInventoryComponent
+    HomeInventoryComponent,
+    TopRecipesComponent
   ],
   imports: [
     BrowserModule,
