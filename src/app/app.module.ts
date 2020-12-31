@@ -15,6 +15,7 @@ import en from '@angular/common/locales/en';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
 import { RecipeFormComponent } from './pages/recipe-form/recipe-form.component';
 import { IngredientFormComponent } from './pages/ingredient-form/ingredient-form.component';
+import { HomeInventoryComponent } from './pages/home-inventory/home-inventory.component';
 
 registerLocaleData(en);
 
@@ -22,7 +23,8 @@ registerLocaleData(en);
   declarations: [
     AppComponent,
     RecipeFormComponent,
-    IngredientFormComponent
+    IngredientFormComponent,
+    HomeInventoryComponent
   ],
   imports: [
     BrowserModule,

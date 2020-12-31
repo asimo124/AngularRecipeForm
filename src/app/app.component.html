@@ -17,6 +17,7 @@
     <div class="inner-content" >
 
       <div style="float: right">
+        <a nz-button nzType="danger" [routerLink]="'home-inventory'" >Home Inventory</a>&nbsp;
         <a nz-button nzType="default" [href]="'https://api.hawleywebdesign.com/ri-recipe/top-recipes'" [target]="'_blank'">Top Recipes</a>&nbsp;
         <ng-container *ngIf="page == 'recipe-form'">
           <a nz-button nzType="primary" [routerLink]="'ingredient-form'">Ingredients</a>

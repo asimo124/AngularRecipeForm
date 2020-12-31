@@ -12,6 +12,8 @@ import {NzSelectComponent} from 'ng-zorro-antd';
 })
 export class IngredientFormComponent implements OnInit, OnDestroy {
 
+  @ViewChild('ingredientSelect', {read: NzSelectComponent}) ingredientSelect: NzSelectComponent;
+
   subs: Subscription[] = [];
   showPopover = false;
 
@@ -46,7 +48,6 @@ export class IngredientFormComponent implements OnInit, OnDestroy {
 
   constructor(
     private ingredientFormService: IngredientFormService,
-    private recipeFormService: RecipeFormService
   ) { }
 
   ngOnInit(): void {
@@ -88,6 +89,7 @@ export class IngredientFormComponent implements OnInit, OnDestroy {
             });
           }
         }
+        this.ingredientSelect.nzOpen = false;
       }
     }));
 

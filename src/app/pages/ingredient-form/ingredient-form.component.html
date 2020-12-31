@@ -1,34 +1,5 @@
 
 <form nz-form >
-
-  <ng-container *ngIf="recipeItem.id" >
-    <nz-form-item>
-      <nz-col [nzSm]="6" [nzXs]="24"></nz-col>
-      <nz-col [nzSm]="14" [nzXs]="24">
-        <nz-table
-            #basicTable
-            [nzData]="recipeItem.riRecipeIngredients"
-            [nzPageSize]="1000000"
-            [nzPageIndex]="1"
-            [nzShowPagination]="false"
-        >
-          <thead>
-          <tr>
-            <th>Ingredient List</th>
-            <th></th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let data of basicTable.data">
-            <td>{{ data.ingredient.title }}</td>
-            <td><i nz-icon nzType="delete" nzTheme="outline" (click)="removeIngredient(data.ingredient.id)"></i></td>
-          </tr>
-          </tbody>
-        </nz-table>
-      </nz-col>
-    </nz-form-item>
-  </ng-container>
-
   <nz-form-item>
     <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="email">Recipe</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" >
@@ -89,4 +60,32 @@
       </ng-template>
     </nz-form-control>
   </nz-form-item>
+
+  <ng-container *ngIf="recipeItem.id" >
+    <nz-form-item>
+      <nz-col [nzSm]="6" [nzXs]="24"></nz-col>
+      <nz-col [nzSm]="14" [nzXs]="24">
+        <nz-table
+            #basicTable
+            [nzData]="recipeItem.riRecipeIngredients"
+            [nzPageSize]="1000000"
+            [nzPageIndex]="1"
+            [nzShowPagination]="false"
+        >
+          <thead>
+          <tr>
+            <th>Ingredient List</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of basicTable.data">
+            <td>{{ data.ingredient.title }}</td>
+            <td><i nz-icon nzType="delete" nzTheme="outline" (click)="removeIngredient(data.ingredient.id)"></i></td>
+          </tr>
+          </tbody>
+        </nz-table>
+      </nz-col>
+    </nz-form-item>
+  </ng-container>
 </form>

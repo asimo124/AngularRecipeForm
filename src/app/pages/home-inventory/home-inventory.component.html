@@ -1,0 +1,51 @@
+
+<form nz-form >
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="email">Ingredient</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" >
+
+      <nz-select
+          #ingredientSelect
+          [(ngModel)]="homeInventoryItems"
+          (ngModelChange)="updateIngredientItems($event)"
+          nzMode="multiple"
+          nzShowSearch
+          nzAllowClear
+          name="ingredientItem"
+          nzPlaceHolder="Select Ingredients"
+      >
+        <ng-container *ngFor="let ingredient of ingredientItems" >
+          <nz-option [nzLabel]="ingredient.title" [nzValue]="ingredient"></nz-option>
+        </ng-container>
+      </nz-select>
+
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-col [nzSm]="6" [nzXs]="24"></nz-col>
+    <nz-col [nzSm]="14" [nzXs]="24">
+      <nz-table
+          #basicTable
+          [nzData]="homeInventoryItems"
+          [nzPageSize]="1000000"
+          [nzPageIndex]="1"
+          [nzShowPagination]="false"
+      >
+        <thead>
+        <tr>
+          <th>Ingredient List</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of basicTable.data">
+          <td>{{ data.title }}</td>
+          <td><i nz-icon nzType="delete" nzTheme="outline" (click)="removeIngredient(data.id)"></i></td>
+        </tr>
+        </tbody>
+      </nz-table>
+    </nz-col>
+  </nz-form-item>
+</form>
