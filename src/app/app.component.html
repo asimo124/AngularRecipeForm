@@ -1,35 +1,54 @@
-<nz-layout class="layout"  >
-  <nz-header>
-    <div class="logo"
-         [style.background]="'url(assets/img/leaf.png)'"></div>
-    <div class="logo-text">Recipe Form</div>
+<nz-layout >
+  <nz-sider
+    nzCollapsible
+    [(nzCollapsed)]="isCollapsed"
+    [nzWidth]="width"
+    [nzCollapsedWidth]="collapsedWidth"
+    [nzReverseArrow]="isReverseArrow"
+  >
+    <div class="logo"></div>
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+      <li nz-menu-item (click)="clickNav('home')">
+        <i nz-icon nzType="home"></i>
+        <span>Home Inventory</span>
+      </li>
+      <li nz-menu-item (click)="clickNav('top')">
+        <i nz-icon nzType="appstore"></i>
+        <span>Top Recipes</span>
+      </li>
+      <li nz-menu-item (click)="clickNav('ingredients')">
+        <i nz-icon nzType="shopping-cart"></i>
+        <span>Ingredients</span>
+      </li>
+      <li nz-menu-item (click)="clickNav('add')">
+        <i nz-icon nzType="shopping-cart"></i>
+        <span>Add Recipe</span>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout class="layout"  >
+    <nz-header>
+      <div class="logo"
+           [style.background]="'url(assets/img/leaf.png)'"></div>
+      <div class="logo-text">Recipe Form</div>
 
-    <!--    <ul nz-menu nzTheme="dark" nzMode="horizontal">-->
-    <!--      <li nz-menu-item>nav 1</li>-->
-    <!--    </ul>-->
-  </nz-header>
-  <nz-content>
-    <!--    <nz-breadcrumb>-->
-    <!--      <nz-breadcrumb-item>Home</nz-breadcrumb-item>-->
-    <!--      <nz-breadcrumb-item>List</nz-breadcrumb-item>-->
-    <!--      <nz-breadcrumb-item>App</nz-breadcrumb-item>-->
-    <!--    </nz-breadcrumb>-->
-    <div class="inner-content" >
+      <!--    <ul nz-menu nzTheme="dark" nzMode="horizontal">-->
+      <!--      <li nz-menu-item>nav 1</li>-->
+      <!--    </ul>-->
+    </nz-header>
+    <nz-content>
+      <!--    <nz-breadcrumb>-->
+      <!--      <nz-breadcrumb-item>Home</nz-breadcrumb-item>-->
+      <!--      <nz-breadcrumb-item>List</nz-breadcrumb-item>-->
+      <!--      <nz-breadcrumb-item>App</nz-breadcrumb-item>-->
+      <!--    </nz-breadcrumb>-->
+      <div class="inner-content" >
 
-      <div style="float: right">
-        <a nz-button nzType="danger" [routerLink]="'home-inventory'" >Home Inventory</a>&nbsp;
-        <a nz-button nzType="default" [routerLink]="'top-recipes'">Top Recipes</a>&nbsp;
-        <ng-container *ngIf="page == 'recipe-form'">
-          <a nz-button nzType="primary" [routerLink]="'ingredient-form'">Ingredients</a>
-        </ng-container>
-        <ng-container *ngIf="page == 'ingredient-form'">
-          <a nz-button nzType="primary" [routerLink]="''">Add Recipe</a>
-        </ng-container>
+        <div style="clear: both; height: 40px;"></div>
+        <router-outlet></router-outlet>
+
       </div>
-      <div style="clear: both; height: 17px;"></div>
-      <router-outlet></router-outlet>
+    </nz-content>
 
-    </div>
-  </nz-content>
-
+  </nz-layout>
 </nz-layout>
