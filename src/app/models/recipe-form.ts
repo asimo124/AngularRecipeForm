@@ -16,12 +16,14 @@ export class Recipe {
   id: number;
   title: string;
   rating: string;
-  lastDateMade: Date;
-  containsSalad: boolean;
-  containsGluten: boolean;
-  proteinId: number;
-  difficultyLevelId: number;
-  isHomeChef: boolean;
-  isEasy: boolean;
+  last_date_made: Date;
+  contains_salad: boolean;
+  contains_gluten: boolean;
+  protein_id: number;
+  difficulty_level_id: number;
+  is_homechef: boolean;
+  is_easy: boolean;
+  recipe_style_id: number;
+  taste_level_id: number;
   riRecipeIngredients?: RecipeIngredients[];
 }

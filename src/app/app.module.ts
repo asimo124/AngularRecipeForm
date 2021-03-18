@@ -17,6 +17,7 @@ import { RecipeFormComponent } from './pages/recipe-form/recipe-form.component';
 import { IngredientFormComponent } from './pages/ingredient-form/ingredient-form.component';
 import { HomeInventoryComponent } from './pages/home-inventory/home-inventory.component';
 import { TopRecipesComponent } from './pages/top-recipes/top-recipes.component';
+import { EditRecipeFormComponent } from './pages/edit-recipe-form/edit-recipe-form.component';
 
 registerLocaleData(en);
 
@@ -26,7 +27,8 @@ registerLocaleData(en);
     RecipeFormComponent,
     IngredientFormComponent,
     HomeInventoryComponent,
-    TopRecipesComponent
+    TopRecipesComponent,
+    EditRecipeFormComponent
   ],
   imports: [
     BrowserModule,

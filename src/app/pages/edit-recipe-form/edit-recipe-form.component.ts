@@ -3,13 +3,14 @@ import {Subscription} from 'rxjs';
 import {Recipe} from '../../models/recipe-form';
 import {RecipeFormService} from '../../services/recipe-form.service';
 import {NzMessageService} from 'ng-zorro-antd';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
-  selector: 'app-recipe-form',
-  templateUrl: './recipe-form.component.html',
-  styleUrls: ['./recipe-form.component.scss']
+  selector: 'app-edit-recipe-form',
+  templateUrl: './edit-recipe-form.component.html',
+  styleUrls: ['./edit-recipe-form.component.scss']
 })
-export class RecipeFormComponent implements OnInit, OnDestroy {
+export class EditRecipeFormComponent implements OnInit, OnDestroy {
 
   subs: Subscription[] = [];
 
@@ -30,18 +31,19 @@ export class RecipeFormComponent implements OnInit, OnDestroy {
     is_homechef: false,
     is_easy: false,
     recipe_style_id: 0,
-    taste_level_id: 0,
+    taste_level_id: 0
   };
-
-  newRecipeItem: Recipe = null;
 
   validForm = true;
   titleInvalid = false;
   proteinInvalid = false;
 
+  recipeId = 0;
+
   constructor(
     private recipeFormService: RecipeFormService,
-    private messageService: NzMessageService
+    private messageService: NzMessageService,
+    private route: ActivatedRoute
   ) {
 
   }
@@ -49,6 +51,19 @@ export class RecipeFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     localStorage.removeItem('newRecipeItemId');
+
+    this.recipeId = Number(this.route.snapshot.paramMap.get('id'));
+
+    this.subs.push(this.recipeFormService.recipeListItem.subscribe(response => {
+      if (response.item) {
+        this.recipeItem = response.item;
+
+        this.recipeFormService.getProteins();
+        this.recipeFormService.getRecipeStyles();
+        this.recipeFormService.getDifficultyLevels();
+        this.recipeFormService.getTasteLevels();
+      }
+    }));
 
     this.subs.push(this.recipeFormService.proteinList.subscribe(response => {
       if (response.items) {
@@ -74,32 +89,14 @@ export class RecipeFormComponent implements OnInit, OnDestroy {
       }
     }));
 
-    // get and subscribe to Recipe Created List
-    this.subs.push(this.recipeFormService.recipeCreatedList.subscribe(response => {
+    // get and subscribe to Recipe Updated List
+    this.subs.push(this.recipeFormService.recipeUpdatedList.subscribe(response => {
       if (response && response.item) {
-        this.recipeItem = {
-          id: 0,
-          title: '',
-          rating: '',
-          last_date_made: new Date(),
-          contains_salad: false,
-          contains_gluten: false,
-          protein_id: 0,
-          difficulty_level_id: 0,
-          is_homechef: false,
-          is_easy: false,
-          recipe_style_id: 0,
-          taste_level_id: 0,
-        };
-
         localStorage.setItem('newRecipeItemId', response.item.id);
       }
     }));
 
-    this.recipeFormService.getProteins();
-    this.recipeFormService.getRecipeStyles();
-    this.recipeFormService.getTasteLevels();
-    this.recipeFormService.getDifficultyLevels();
+    this.recipeFormService.getRecipe(this.recipeId);
   }
 
   onDateChange(date2) {
@@ -127,7 +124,7 @@ export class RecipeFormComponent implements OnInit, OnDestroy {
     if (!this.validateForm()) {
       this.messageService.create('error', 'Missing required fields');
     } else {
-      this.recipeFormService.createRecipe(this.recipeItem);
+      this.recipeFormService.updateRecipe(this.recipeItem, this.recipeId);
     }
   }
 
@@ -138,4 +135,5 @@ export class RecipeFormComponent implements OnInit, OnDestroy {
       sub = this.subs.pop();
     }
   }
+
 }

@@ -1,6 +1,12 @@
 
 <form nz-form >
   <nz-form-item>
+    <nz-col [nzSm]="6" [nzXs]="24"></nz-col>
+    <nz-col [nzSm]="14" [nzXs]="24">
+      <h2>Modify Recipe Ingredients</h2>
+    </nz-col>
+  </nz-form-item>
+  <nz-form-item>
     <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="email">Recipe</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" >
       <nz-select
@@ -10,11 +16,15 @@
         name="recipeItem"
         [(ngModel)]="recipeItem"
         (ngModelChange)="selectedRecipe($event)"
+        [style.width]="'87%'"
       >
         <ng-container *ngFor="let recipe of recipeItems" >
           <nz-option [nzLabel]="recipe.title" [nzValue]="recipe"></nz-option>
         </ng-container>
-      </nz-select>
+      </nz-select>&nbsp;
+      <ng-container *ngIf="recipeItem && recipeItem.id">
+        <a [routerLink]="'/edit-recipe/' + recipeItem.id" nz-button nzType="default"><i nz-icon nzType="edit" nzTheme="outline"></i></a>
+      </ng-container>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>

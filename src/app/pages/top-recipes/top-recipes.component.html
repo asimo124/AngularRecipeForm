@@ -1,5 +1,8 @@
 <div class="recipes-list">
   <div class="row" >
+    <div nz-col [nzXs]="{ span: 24 }"   >
+      <h1>Top Recipes</h1>
+    </div>
     <div nz-row [nzGutter]="4">
       <div nz-col [nzXs]="{ span: 10 }" [nzMd]="{ span: 8 }" >
         Protein
@@ -62,7 +65,7 @@
               </ng-container>
             </div>
             <div style="clear: both; height: 12px;"></div>
-            <span class="recipe-title">{{ recipe.title }}</span>
+            <span class="recipe-title">{{ recipe.recipe }}</span>&nbsp; <a [routerLink]="'/edit-recipe/' + recipe.id" nz-button nzType="default"><i nz-icon nzType="edit" nzTheme="outline"></i></a>
             <div style="clear: both; height: 7px;"></div>
             <strong>Cooked on:</strong> {{ recipe.last_date_made }}
             <div style="clear: both; height: 7px;"></div>
