@@ -50,6 +50,9 @@ export class AppComponent implements OnInit {
       case 'ingredients':
         this.router.navigateByUrl('/ingredient-form');
         break;
+      case 'update-ingredients':
+        this.router.navigateByUrl('/update-ingredients');
+        break;
       case 'add':
         this.router.navigateByUrl('/');
         break;

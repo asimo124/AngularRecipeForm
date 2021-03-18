@@ -2,6 +2,7 @@
 export class Ingredient {
   id: number;
   title: string;
+  is_modifying?: boolean;
   ingredient_type_id: number;
 }
 

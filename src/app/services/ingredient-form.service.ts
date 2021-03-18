@@ -22,6 +22,10 @@ export class IngredientFormService {
   private ingredientCreatedSource = new BehaviorSubject(this.ingredientCreatedItem);
   public ingredientCreatedListItem = this.ingredientCreatedSource.asObservable();
 
+  private ingredientUpdatedItem: Ingredient = null;
+  private ingredientUpdatedSource = new BehaviorSubject(this.ingredientUpdatedItem);
+  public ingredientUpdatedListItem = this.ingredientUpdatedSource.asObservable();
+
   private ingredientRemovedItem: Ingredient = null;
   private ingredientRemovedSource = new BehaviorSubject(this.ingredientRemovedItem);
   public ingredientRemovedListItem = this.ingredientRemovedSource.asObservable();
@@ -54,6 +58,37 @@ export class IngredientFormService {
       },
       (err) => {
         console.log('error', 'Error loading Get Ingredients : ' + err.error.message);
+      });
+  }
+
+  updateIngredient(ingredient, id) {
+
+    console.log('ingredient: ', ingredient);
+
+    const body = new URLSearchParams();
+    if (ingredient.title) {
+      body.set('title', ingredient.title);
+    }
+    if (ingredient.price) {
+      body.set('price', String(ingredient.price));
+    }
+    if (ingredient.cheap_price) {
+      body.set('cheap_price', String(ingredient.cheap_price));
+    }
+
+    const options = {
+      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+    };
+
+    this.http.post<any>(this.apiUrl + '/recipe-form/update-ingredient?id=' + id, body.toString(), options).subscribe(response => {
+        if (response && response.item) {
+          this.ingredientUpdatedSource.next(response.item);
+          this.messageService.create('success', 'Ingredient Updated');
+        }
+      },
+      (err) => {
+        console.log('error', 'Error loading Update Ingredient : ' + err.error.message);
+        this.messageService.create('error', 'Error loading Create Ingredient : ' + err.error.message);
       });
   }
 

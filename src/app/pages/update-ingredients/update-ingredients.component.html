@@ -1,0 +1,68 @@
+
+<form nz-form >
+
+  <nz-form-item>
+    <nz-col [nzSm]="6" [nzXs]="24"></nz-col>
+    <nz-col [nzSm]="14" [nzXs]="24">
+      <h2>Update Ingredients</h2>
+    </nz-col>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-col [nzSm]="6" [nzXs]="24"></nz-col>
+    <nz-col [nzSm]="14" [nzXs]="24">
+      <nz-table
+          #basicTable
+          [nzData]="ingredientItems"
+          [nzPageSize]="1000000"
+          [nzPageIndex]="1"
+          [nzShowPagination]="false"
+      >
+        <thead>
+        <tr>
+          <th>Ingredient List</th>
+          <th>Low Price</th>
+          <th>High Price</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of basicTable.data; let i = index">
+          <td>
+            <ng-container *ngIf="!data.is_modifying">
+              {{ data.title }}
+            </ng-container>
+            <ng-container *ngIf="data.is_modifying">
+              <input nz-input [(ngModel)]="data.title" name="title" id="title" />
+            </ng-container>
+          </td>
+          <td>
+            <ng-container *ngIf="!data.is_modifying">
+              {{ data.cheap_price }}
+            </ng-container>
+            <ng-container *ngIf="data.is_modifying">
+              <input nz-input [(ngModel)]="data.cheap_price" name="cheap_price" id="cheap_price" />
+            </ng-container>
+          </td>
+          <td>
+            <ng-container *ngIf="!data.is_modifying">
+              {{ data.price }}
+            </ng-container>
+            <ng-container *ngIf="data.is_modifying">
+              <input nz-input [(ngModel)]="data.price" name="price" id="price" />
+            </ng-container>
+          </td>
+          <td>
+            <ng-container *ngIf="!data.is_modifying">
+              <i nz-icon nzType="edit" nzTheme="outline" (click)="showModifyIngredientPrice(i)"></i>
+            </ng-container>
+            <ng-container *ngIf="data.is_modifying">
+              <i nz-icon nzType="check" nzTheme="outline" (click)="updateIngredientPrice(data, i)"></i>
+            </ng-container>
+          </td>
+        </tr>
+        </tbody>
+      </nz-table>
+    </nz-col>
+  </nz-form-item>
+</form>

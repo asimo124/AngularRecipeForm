@@ -8,22 +8,27 @@
   >
     <div class="logo"></div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
-      <li nz-menu-item (click)="clickNav('home')">
-        <i nz-icon nzType="home"></i>
-        <span>Home Inventory</span>
-      </li>
       <li nz-menu-item (click)="clickNav('top')">
         <i nz-icon nzType="appstore"></i>
         <span>Top Recipes</span>
-      </li>
-      <li nz-menu-item (click)="clickNav('ingredients')">
-        <i nz-icon nzType="shopping-cart"></i>
-        <span>Ingredients</span>
       </li>
       <li nz-menu-item (click)="clickNav('add')">
         <i nz-icon nzType="shopping-cart"></i>
         <span>Add Recipe</span>
       </li>
+      <li nz-menu-item (click)="clickNav('home')">
+        <i nz-icon nzType="home"></i>
+        <span>Home Inventory</span>
+      </li>
+      <li nz-menu-item (click)="clickNav('update-ingredients')">
+        <i nz-icon nzType="shopping-cart"></i>
+        <span>Update Ingredients</span>
+      </li>
+      <li nz-menu-item (click)="clickNav('ingredients')">
+        <i nz-icon nzType="shopping-cart"></i>
+        <span>Ingredients</span>
+      </li>
+
     </ul>
   </nz-sider>
   <nz-layout class="layout"  >
