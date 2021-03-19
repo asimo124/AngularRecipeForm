@@ -24,13 +24,15 @@ export class IngredientFormComponent implements OnInit, OnDestroy {
     id: 0,
     title: '',
     rating: '',
-    lastDateMade: new Date(),
-    containsSalad: false,
-    containsGluten: false,
-    proteinId: 0,
-    difficultyLevelId: 0,
-    isHomeChef: false,
-    isEasy: false,
+    last_date_made: new Date(),
+    contains_salad: false,
+    contains_gluten: false,
+    protein_id: 0,
+    difficulty_level_id: 0,
+    is_homechef: false,
+    is_easy: false,
+    recipe_style_id: 0,
+    taste_level_id: 0,
     riRecipeIngredients: []
   };
 

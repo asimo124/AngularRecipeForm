@@ -1,8 +1,13 @@
 
 export class TopRecipeFilters {
   proteinId: number;
-  frugalMode: boolean;
-  isSalad: boolean;
-  isHomechef: boolean;
-  isEasy: boolean;
+  difficultyLevelId: number;
+  tasteLevelId: number;
+  recipeStyleId: number;
+  sort1: string;
+  sort_dir1: string;
+  sort2: string;
+  sort_dir2: string;
+  sort3: string;
+  sort_dir3: string;
 }

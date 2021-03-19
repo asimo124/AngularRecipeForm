@@ -18,15 +18,25 @@ export class TopRecipesComponent implements OnInit {
 
   topRecipeItems: Recipe[] = [];
 
+  displayMode = 'grid';
+
   filters: TopRecipeFilters = {
     proteinId: 0,
-    frugalMode: null,
-    isSalad: null,
-    isHomechef: null,
-    isEasy: null,
+    difficultyLevelId: 0,
+    tasteLevelId: 0,
+    recipeStyleId: 0,
+    sort1: '',
+    sort_dir1: 'ASC',
+    sort2: '',
+    sort_dir2: 'ASC',
+    sort3: '',
+    sort_dir3: 'ASC'
   };
 
   proteinItems: any[] = [];
+  difficultyLevelItems: any[] = [];
+  tasteLevelItems: any[] = [];
+  recipeStyleItems: any[] = [];
 
   apiUrl = siteSettings.apiUrl;
 
@@ -50,8 +60,29 @@ export class TopRecipesComponent implements OnInit {
       }
     }));
 
+    this.subs.push(this.recipeFormService.difficultyLevelsList.subscribe(response => {
+      if (response.items) {
+        this.difficultyLevelItems = response.items;
+      }
+    }));
+
+    this.subs.push(this.recipeFormService.tasteLevelList.subscribe(response => {
+      if (response.items) {
+        this.tasteLevelItems = response.items;
+      }
+    }));
+
+    this.subs.push(this.recipeFormService.recipeStyleList.subscribe(response => {
+      if (response.items) {
+        this.recipeStyleItems = response.items;
+      }
+    }));
+
     this.searchRecipes();
     this.recipeFormService.getProteins();
+    this.recipeFormService.getDifficultyLevels();
+    this.recipeFormService.getTasteLevels();
+    this.recipeFormService.getRecipeStyles();
   }
 
   searchRecipes() {

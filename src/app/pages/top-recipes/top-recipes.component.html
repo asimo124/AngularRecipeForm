@@ -4,7 +4,7 @@
       <h1>Top Recipes</h1>
     </div>
     <div nz-row [nzGutter]="4">
-      <div nz-col [nzXs]="{ span: 10 }" [nzMd]="{ span: 8 }" >
+      <div nz-col [nzXs]="{ span: 10 }" [nzMd]="{ span: 4 }" [nzLg]="{ span: 3 }" >
         Protein
         <div style="clear: both;"></div>
         <nz-select name="proteinId" [(ngModel)]="filters.proteinId" [style.width]="'100%'" nzAllowClear>
@@ -13,47 +13,100 @@
           </ng-container>
         </nz-select>
       </div>
-      <div nz-col [nzXs]="{ span: 6 }"  [nzMd]="{ span: 4 }" >
-        Frugal Mode
+      <div nz-col [nzXs]="{ span: 10 }" [nzMd]="{ span: 4 }" [nzLg]="{ span: 3 }" >
+        Style
         <div style="clear: both;"></div>
-        <nz-select name="frugalMode" [(ngModel)]="filters.frugalMode" [style.width]="'100%'" nzAllowClear>
-          <nz-option [nzValue]="true" [nzLabel]="'Yes'"></nz-option>
-          <nz-option [nzValue]="false" [nzLabel]="'No'"></nz-option>
+        <nz-select name="recipeStyleId" [(ngModel)]="filters.recipeStyleId" [style.width]="'100%'" nzAllowClear>
+          <ng-container *ngFor="let style of recipeStyleItems">
+            <nz-option [nzValue]="style.id" [nzLabel]="style.title"></nz-option>
+          </ng-container>
         </nz-select>
       </div>
-      <div nz-col [nzXs]="{ span: 6 }"  [nzMd]="{ span: 4 }" >
-        Is Salad
+      <div nz-col [nzXs]="{ span: 10 }" [nzMd]="{ span: 4 }" [nzLg]="{ span: 3 }" >
+        Rating
         <div style="clear: both;"></div>
-        <nz-select name="isSalad" [(ngModel)]="filters.isSalad" [style.width]="'100%'" nzAllowClear>
-          <nz-option [nzValue]="true" [nzLabel]="'Yes'"></nz-option>
-          <nz-option [nzValue]="false" [nzLabel]="'No'"></nz-option>
+        <nz-select name="tasteLevelId" [(ngModel)]="filters.tasteLevelId" [style.width]="'100%'" nzAllowClear>
+          <ng-container *ngFor="let taste_level of tasteLevelItems">
+            <nz-option [nzValue]="taste_level.id" [nzLabel]="taste_level.title"></nz-option>
+          </ng-container>
         </nz-select>
       </div>
-      <div nz-col [nzXs]="{ span: 6 }"  [nzMd]="{ span: 4 }" >
-        Homechef
+      <div nz-col [nzXs]="{ span: 10 }" [nzMd]="{ span: 4 }" [nzLg]="{ span: 3 }" >
+        Difficulty Level
         <div style="clear: both;"></div>
-        <nz-select name="isHomechef" [(ngModel)]="filters.isHomechef" [style.width]="'100%'" nzAllowClear>
-          <nz-option [nzValue]="true" [nzLabel]="'Yes'"></nz-option>
-          <nz-option [nzValue]="false" [nzLabel]="'No'"></nz-option>
+        <nz-select name="difficultyLevelId" [(ngModel)]="filters.difficultyLevelId" [style.width]="'100%'" nzAllowClear>
+          <ng-container *ngFor="let difficulty_level of difficultyLevelItems">
+            <nz-option [nzValue]="difficulty_level.id" [nzLabel]="difficulty_level.title"></nz-option>
+          </ng-container>
         </nz-select>
       </div>
-      <div nz-col [nzXs]="{ span: 6 }"  [nzMd]="{ span: 4 }" >
-        Easy
+
+    </div>
+    <div nz-row [nzGutter]="4">
+      <div nz-col [nzXs]="{ span: 6 }"  [nzMd]="{ span: 4 }" [nzLg]="{ span: 3 }" >
+        Sort 1
         <div style="clear: both;"></div>
-        <nz-select name="isEasy" [(ngModel)]="filters.isEasy" [style.width]="'100%'" nzAllowClear>
-          <nz-option [nzValue]="true" [nzLabel]="'Yes'"></nz-option>
-          <nz-option [nzValue]="false" [nzLabel]="'No'"></nz-option>
+        <nz-select name="sort1" [(ngModel)]="filters.sort1" [style.width]="'100%'" nzAllowClear>
+          <nz-option [nzValue]="'price'" [nzLabel]="'Price'"></nz-option>
+          <nz-option [nzValue]="'taste_level'" [nzLabel]="'Taste Level'"></nz-option>
+          <nz-option [nzValue]="'difficulty_level'" [nzLabel]="'Difficulty Level'"></nz-option>
+        </nz-select>
+      </div>
+      <div nz-col [nzXs]="{ span: 6 }"  [nzMd]="{ span: 3 }" [nzLg]="{ span: 2 }" >
+        &nbsp;
+        <div style="clear: both;"></div>
+        <nz-select name="sort_dir1" [(ngModel)]="filters.sort_dir1" [style.width]="'100%'" nzAllowClear>
+          <nz-option [nzValue]="'ASC'" [nzLabel]="'ASC'"></nz-option>
+          <nz-option [nzValue]="'DESC'" [nzLabel]="'DESC'"></nz-option>
+        </nz-select>
+      </div>
+      <div nz-col [nzXs]="{ span: 6 }"  [nzMd]="{ span: 4 }" [nzLg]="{ span: 3 }" >
+        Sort 2
+        <div style="clear: both;"></div>
+        <nz-select name="sort2" [(ngModel)]="filters.sort2" [style.width]="'100%'" nzAllowClear>
+          <nz-option [nzValue]="'price'" [nzLabel]="'Price'"></nz-option>
+          <nz-option [nzValue]="'taste_level'" [nzLabel]="'Taste Level'"></nz-option>
+          <nz-option [nzValue]="'difficulty_level'" [nzLabel]="'Difficulty Level'"></nz-option>
+        </nz-select>
+      </div>
+      <div nz-col [nzXs]="{ span: 6 }"  [nzMd]="{ span: 3 }" [nzLg]="{ span: 2 }" >
+        &nbsp;
+        <div style="clear: both;"></div>
+        <nz-select name="sort_dir2" [(ngModel)]="filters.sort_dir2" [style.width]="'100%'" nzAllowClear>
+          <nz-option [nzValue]="'ASC'" [nzLabel]="'ASC'"></nz-option>
+          <nz-option [nzValue]="'DESC'" [nzLabel]="'DESC'"></nz-option>
+        </nz-select>
+      </div>
+      <div nz-col [nzXs]="{ span: 6 }"  [nzMd]="{ span: 4 }" [nzLg]="{ span: 3 }" >
+        Sort 3
+        <div style="clear: both;"></div>
+        <nz-select name="sort3" [(ngModel)]="filters.sort3" [style.width]="'100%'" nzAllowClear>
+          <nz-option [nzValue]="'price'" [nzLabel]="'Price'"></nz-option>
+          <nz-option [nzValue]="'taste_level'" [nzLabel]="'Taste Level'"></nz-option>
+          <nz-option [nzValue]="'difficulty_level'" [nzLabel]="'Difficulty Level'"></nz-option>
+        </nz-select>
+      </div>
+      <div nz-col [nzXs]="{ span: 6 }"  [nzMd]="{ span: 3 }" [nzLg]="{ span: 2 }" >
+        &nbsp;
+        <div style="clear: both;"></div>
+        <nz-select name="sort_dir3" [(ngModel)]="filters.sort_dir3" [style.width]="'100%'" nzAllowClear>
+          <nz-option [nzValue]="'ASC'" [nzLabel]="'ASC'"></nz-option>
+          <nz-option [nzValue]="'DESC'" [nzLabel]="'DESC'"></nz-option>
         </nz-select>
       </div>
       <div nz-col [nzXs]="{ span: 6 }" >
         &nbsp;
         <div style="clear: both;"></div>
-        <button nz-button [nzType]="'primary'" (click)="searchRecipes()">Search</button>
+        <button nz-button [nzType]="'primary'" (click)="searchRecipes()">Search</button>&nbsp;
+        <a nz-button nzType="default" (click)="displayMode = 'grid'"><i nz-icon nzType="appstore" nzTheme="outline"></i></a>&nbsp;
+        <a nz-button nzType="default" (click)="displayMode = 'list'"><i nz-icon nzType="bars" nzTheme="outline"></i></a>
       </div>
+
     </div>
     <div style="clear: both; height: 7px;"></div>
     <nz-row [nzGutter]="[8, 8]">
-      <ng-container *ngFor="let recipe of topRecipeItems" >
+      <ng-container *ngIf="displayMode == 'grid'">
+        <ng-container *ngFor="let recipe of topRecipeItems" >
         <div class="recipe-col" nz-col [nzXs]="{ span: 12 }" [nzSm]="{ span: 8 }" [nzMd]="{ span: 6 }" >
           <div class="inner-recipe-col">
             <div class="img_holder">
@@ -66,14 +119,42 @@
             </div>
             <div style="clear: both; height: 12px;"></div>
             <span class="recipe-title">{{ recipe.recipe }}</span>&nbsp; <a [routerLink]="'/edit-recipe/' + recipe.id" nz-button nzType="default"><i nz-icon nzType="edit" nzTheme="outline"></i></a>
-            <div style="clear: both; height: 7px;"></div>
-            <strong>Cooked on:</strong> {{ recipe.last_date_made }}
-            <div style="clear: both; height: 7px;"></div>
-            <strong>Flavors:</strong> {{ recipe.flavors }}
-            <div style="clear: both; height: 7px;"></div>
-            <strong>Owned Ingredients:</strong> {{ recipe.owned_ingredients }}
           </div>
         </div>
+      </ng-container>
+      </ng-container>
+      <ng-container *ngIf="displayMode == 'list'">
+        <nz-table
+            #basicTable
+            [nzData]="topRecipeItems"
+            [nzPageSize]="1000000"
+            [nzPageIndex]="1"
+            [nzShowPagination]="false"
+            [style.width]="'100%'"
+        >
+          <thead>
+          <tr>
+            <th>Recipe</th>
+            <th>Protein</th>
+            <th>Style</th>
+            <th>Low Price</th>
+            <th>High Price</th>
+            <th>Difficulty Level</th>
+            <th>Taste Level</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of basicTable.data">
+            <td>{{ data.recipe }}</td>
+            <td>{{ data.protein }}</td>
+            <td>{{ data.style }}</td>
+            <td>{{ data.recipe_low_price }}</td>
+            <td>{{ data.recipe_high_price }}</td>
+            <td>{{ data.difficulty_level }}</td>
+            <td>{{ data.taste_level }}</td>
+          </tr>
+          </tbody>
+        </nz-table>
       </ng-container>
     </nz-row>
   </div>

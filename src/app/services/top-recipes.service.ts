@@ -23,22 +23,42 @@ export class TopRecipesService {
 
   buildParams(filters: TopRecipeFilters) {
 
+    console.log('filters: ', filters);
+
     let params = '';
     if (filters.proteinId) {
       params = 'protein_id=' + filters.proteinId + '&';
     }
-    if (filters.frugalMode !== null) {
-      params += 'frugal_mode=' + ((filters.frugalMode) ? '1' : '0') + '&';
+
+    if (filters.difficultyLevelId) {
+      params += 'difficulty_level_id=' + filters.difficultyLevelId + '&';
     }
-    if (filters.isSalad !== null) {
-      params += 'contains_salad=' + ((filters.isSalad) ? '1' : '0') + '&';
+    if (filters.recipeStyleId) {
+      params += 'recipe_style_id=' + filters.recipeStyleId + '&';
     }
-    if (filters.isHomechef !== null) {
-      params += 'is_homechef=' + ((filters.isHomechef) ? '1' : '0') + '&';
+    if (filters.tasteLevelId) {
+      params += 'taste_level_id=' + filters.tasteLevelId + '&';
     }
-    if (filters.isEasy !== null) {
-      params += 'is_easy=' + ((filters.isEasy) ? '1' : '0') + '&';
+    if (filters.sort1) {
+      params += 'sort1=' + filters.sort1 + '&';
     }
+    if (filters.sort_dir1) {
+      params += 'sort_dir1=' + filters.sort_dir1 + '&';
+    }
+    if (filters.sort2) {
+      params += 'sort2=' + filters.sort2 + '&';
+    }
+    if (filters.sort_dir2) {
+      params += 'sort_dir2=' + filters.sort_dir2 + '&';
+    }
+    if (filters.sort3) {
+      params += 'sort3=' + filters.sort3 + '&';
+    }
+    if (filters.sort_dir3) {
+      params += 'sort_dir3=' + filters.sort_dir3 + '&';
+    }
+
+
     return params;
   }
 
