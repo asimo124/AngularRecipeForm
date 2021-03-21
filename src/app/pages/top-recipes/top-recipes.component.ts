@@ -106,7 +106,7 @@ export class TopRecipesComponent implements OnInit, OnDestroy {
     if (hasShoppingList) {
       shoppingListItem = JSON.parse(shoppingList);
     }
-    
+
     if (shoppingListItem.recipes.indexOf(recipeId) == -1) {
       shoppingListItem.recipes.push(recipeId);
     }
