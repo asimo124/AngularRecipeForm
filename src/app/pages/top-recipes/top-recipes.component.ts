@@ -100,14 +100,13 @@ export class TopRecipesComponent implements OnInit, OnDestroy {
         hasShoppingList = true;
       }
     }
-    let shoppingListItem = {};
+    let shoppingListItem = {
+      recipes: []
+    };
     if (hasShoppingList) {
       shoppingListItem = JSON.parse(shoppingList);
     }
-
-    if (!shoppingListItem.hasOwnProperty('recipes')) {
-      shoppingListItem.recipes = [];
-    }
+    
     if (shoppingListItem.recipes.indexOf(recipeId) == -1) {
       shoppingListItem.recipes.push(recipeId);
     }

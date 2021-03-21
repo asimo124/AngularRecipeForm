@@ -9,7 +9,7 @@
     <ng-container *ngFor="let item of shoppingList" ><ng-container *ngIf="item.count" >
  {{ item.count }} - {{ item.title }} - ${{ item.price }}</ng-container><ng-container *ngIf="!item.count" >
 </ng-container></ng-container>
-    
+
 Total Cost: ${{ totalCost }}
   </pre>
   <textarea ></textarea>
