@@ -20,6 +20,7 @@ import { TopRecipesComponent } from './pages/top-recipes/top-recipes.component';
 import { EditRecipeFormComponent } from './pages/edit-recipe-form/edit-recipe-form.component';
 import { UpdateIngredientsComponent } from './pages/update-ingredients/update-ingredients.component';
 import { SelectRecipeComponent } from './components/select-recipe/select-recipe.component';
+import { ShoppingListComponent } from './pages/shopping-list/shopping-list.component';
 
 registerLocaleData(en);
 
@@ -32,7 +33,8 @@ registerLocaleData(en);
     TopRecipesComponent,
     EditRecipeFormComponent,
     UpdateIngredientsComponent,
-    SelectRecipeComponent
+    SelectRecipeComponent,
+    ShoppingListComponent
   ],
   imports: [
     BrowserModule,

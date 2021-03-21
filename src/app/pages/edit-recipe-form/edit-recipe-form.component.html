@@ -57,6 +57,17 @@
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="email">Recipe Link</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" >
+      <input nz-input
+             [(ngModel)]="recipeItem.recipe_link"
+             name="recipe_link"
+             id="recipe_link"
+             [style.border]="(titleInvalid) ? 'solid 1px red' : ''"
+      />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
     <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="email">Last Date Made</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" >
       <nz-date-picker

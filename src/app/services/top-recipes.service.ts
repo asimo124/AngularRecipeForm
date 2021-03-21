@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {NzMessageService} from 'ng-zorro-antd';
 import {siteSettings} from '../models/site-settings';
 import {TopRecipeFilters} from '../models/top-recipes';
@@ -13,6 +13,10 @@ export class TopRecipesService {
   private topRecipeItems: any[] = [];
   private topRecipeSource = new BehaviorSubject(this.topRecipeItems);
   public topRecipeList = this.topRecipeSource.asObservable();
+
+  private shoppingListItems: any = [];
+  private shoppingListSource = new BehaviorSubject(this.shoppingListItems);
+  public shoppingListList = this.shoppingListSource.asObservable();
 
   private apiUrl = siteSettings.apiUrl;
 
@@ -74,5 +78,47 @@ export class TopRecipesService {
     (err) => {
       console.log('error', 'Error loading Top Recipes : ' + err.error.message);
     });
+  }
+
+  getShoppingList() {
+
+    let shoppingList = '';
+    let hasShoppingList = false;
+    if (sessionStorage.getItem('shopping_list')) {
+      shoppingList = sessionStorage.getItem('shopping_list');
+      if (shoppingList) {
+        hasShoppingList = true;
+      }
+    }
+    if (!hasShoppingList) {
+      return;
+    }
+    const shoppingListItem = JSON.parse(shoppingList);
+    if (!shoppingListItem.hasOwnProperty('recipes')) {
+      return;
+    }
+    const body = new URLSearchParams();
+    let i = 0;
+    shoppingListItem.recipes.forEach(function getRecipe(recipeId) {
+      body.set('recipes[' + i + ']', String(recipeId));
+      i++;
+    });
+
+    console.log('body: ', body);
+
+    const options = {
+      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+    };
+
+    this.http.post<any>(this.apiUrl + '/top-recipes/shopping-list', body.toString(), options).subscribe(response => {
+        if (response) {
+          this.shoppingListSource.next(response);
+          // this.messageService.create('success', `Recipe created`);
+        }
+      },
+      (err) => {
+        console.log('error', 'Error loading Shopping List : ' + err.error.message);
+        this.messageService.create('error', 'Error loading Shopping List : ' + err.error.message);
+      });
   }
 }

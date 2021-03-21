@@ -6,6 +6,7 @@ import {TopRecipesService} from '../../services/top-recipes.service';
 import {siteSettings} from '../../models/site-settings';
 import {RecipeFormService} from '../../services/recipe-form.service';
 import {TopRecipeFilters} from '../../models/top-recipes';
+import {NzMessageService} from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-top-recipes',
@@ -43,7 +44,8 @@ export class TopRecipesComponent implements OnInit, OnDestroy {
   constructor(
     private ingredientFormService: IngredientFormService,
     private recipeFormService: RecipeFormService,
-    private topRecipesService: TopRecipesService
+    private topRecipesService: TopRecipesService,
+    private messageService: NzMessageService
   ) { }
 
   ngOnInit(): void {
@@ -87,6 +89,30 @@ export class TopRecipesComponent implements OnInit, OnDestroy {
 
   searchRecipes() {
     this.topRecipesService.getTopRecipes(this.filters);
+  }
+
+  addToShoppingList(recipeIngredients, recipeId) {
+    let hasShoppingList = false;
+    let shoppingList = '';
+    if (sessionStorage.getItem('shopping_list')) {
+      shoppingList = sessionStorage.getItem('shopping_list');
+      if (shoppingList) {
+        hasShoppingList = true;
+      }
+    }
+    let shoppingListItem = {};
+    if (hasShoppingList) {
+      shoppingListItem = JSON.parse(shoppingList);
+    }
+
+    if (!shoppingListItem.hasOwnProperty('recipes')) {
+      shoppingListItem.recipes = [];
+    }
+    if (shoppingListItem.recipes.indexOf(recipeId) == -1) {
+      shoppingListItem.recipes.push(recipeId);
+    }
+    sessionStorage.setItem('shopping_list', JSON.stringify(shoppingListItem));
+    this.messageService.create('success', 'Added recipe to Shopping List');
   }
 
   ngOnDestroy() {

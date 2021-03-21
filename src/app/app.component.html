@@ -8,25 +8,29 @@
   >
     <div class="logo"></div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
-      <li nz-menu-item (click)="clickNav('top')">
+      <li nz-menu-item (click)="clickNav('/top-recipes')">
         <i nz-icon nzType="appstore"></i>
         <span>Top Recipes</span>
       </li>
-      <li nz-menu-item (click)="clickNav('add')">
+      <li nz-menu-item (click)="clickNav('/')">
         <i nz-icon nzType="shopping-cart"></i>
         <span>Add Recipe</span>
       </li>
-      <li nz-menu-item (click)="clickNav('home')">
+      <li nz-menu-item (click)="clickNav('/home-inventory')">
         <i nz-icon nzType="home"></i>
         <span>Home Inventory</span>
       </li>
-      <li nz-menu-item (click)="clickNav('update-ingredients')">
+      <li nz-menu-item (click)="clickNav('/update-ingredients')">
         <i nz-icon nzType="shopping-cart"></i>
-        <span>Update Ingredients</span>
+        <span>Ingredient Prices</span>
       </li>
-      <li nz-menu-item (click)="clickNav('ingredients')">
+      <li nz-menu-item (click)="clickNav('/ingredient-form')">
         <i nz-icon nzType="shopping-cart"></i>
-        <span>Ingredients</span>
+        <span>Recipe Ingredients</span>
+      </li>
+      <li nz-menu-item (click)="clickNav('/shopping-list')">
+        <i nz-icon nzType="shopping-cart"></i>
+        <span>Shopping List</span>
       </li>
 
     </ul>

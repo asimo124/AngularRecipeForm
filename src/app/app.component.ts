@@ -40,23 +40,7 @@ export class AppComponent implements OnInit {
   }
 
   clickNav(action) {
-    switch (action) {
-      case 'home':
-        this.router.navigateByUrl('/home-inventory');
-        break;
-      case 'top':
-        this.router.navigateByUrl('/top-recipes');
-        break;
-      case 'ingredients':
-        this.router.navigateByUrl('/ingredient-form');
-        break;
-      case 'update-ingredients':
-        this.router.navigateByUrl('/update-ingredients');
-        break;
-      case 'add':
-        this.router.navigateByUrl('/');
-        break;
-    }
+    this.router.navigateByUrl(action);
     this.isCollapsed = true;
   }
 

@@ -52,6 +52,9 @@ export class RecipeFormService {
     if (recipeItem.rating) {
       body.set('rating', recipeItem.rating);
     }
+    if (recipeItem.recipe_link) {
+      body.set('recipe_link', recipeItem.recipe_link);
+    }
     if (recipeItem.last_date_made) {
       body.set('last_date_made', String(recipeItem.last_date_made.getTime() / 1000));
     }

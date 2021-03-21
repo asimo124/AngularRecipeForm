@@ -118,7 +118,16 @@
               </ng-container>
             </div>
             <div style="clear: both; height: 12px;"></div>
-            <span class="recipe-title">{{ recipe.recipe }}</span>&nbsp; <a [routerLink]="'/edit-recipe/' + recipe.id" nz-button nzType="default"><i nz-icon nzType="edit" nzTheme="outline"></i></a>
+            <span class="recipe-title">{{ recipe.recipe }}</span>&nbsp;
+            <a
+              nz-tooltip
+              [nzTooltipTitle]="'Edit Recipe'"
+              [routerLink]="'/edit-recipe/' + recipe.id" nz-button nzType="default"><i nz-icon nzType="edit" nzTheme="outline"></i></a>&nbsp;
+            <a
+              nz-tooltip
+              (click)="addToShoppingList(recipe.riRecipeIngredients, recipe.id)"
+              [nzTooltipTitle]="'Add To Shopping List'"
+              nz-button nzType="default"><i nz-icon nzType="shopping-cart" nzTheme="outline"></i></a>
           </div>
         </div>
       </ng-container>

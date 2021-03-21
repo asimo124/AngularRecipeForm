@@ -31,7 +31,8 @@ export class EditRecipeFormComponent implements OnInit, OnDestroy {
     is_homechef: false,
     is_easy: false,
     recipe_style_id: 0,
-    taste_level_id: 0
+    taste_level_id: 0,
+    recipe_link: ''
   };
 
   validForm = true;

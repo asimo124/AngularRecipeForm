@@ -26,5 +26,6 @@ export class Recipe {
   is_easy: boolean;
   recipe_style_id: number;
   taste_level_id: number;
+  recipe_link: string;
   riRecipeIngredients?: RecipeIngredients[];
 }

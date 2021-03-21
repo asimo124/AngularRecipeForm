@@ -1,0 +1,19 @@
+<h1>Shopping List</h1>
+<div style="clear: both; height: 8px;"></div>
+
+<ng-container *ngIf="hasShoppingList" >
+  <button nz-button [nzType]="'primary'" (click)="copyFunction()">Copy to Clipboard</button>&nbsp;
+  <button nz-button [nzType]="'default'" (click)="clearShoppingList()">Clear Shopping List</button>
+  <div style="clear: both; height: 8px;"></div>
+  <pre id="myInput">
+    <ng-container *ngFor="let item of shoppingList" ><ng-container *ngIf="item.count" >
+ {{ item.count }} - {{ item.title }} - ${{ item.price }}</ng-container><ng-container *ngIf="!item.count" >
+</ng-container></ng-container>
+    
+Total Cost: ${{ totalCost }}
+  </pre>
+  <textarea ></textarea>
+</ng-container>
+<ng-container *ngIf="!hasShoppingList" >
+  <p>No Shopping List Added Yet</p>
+</ng-container>

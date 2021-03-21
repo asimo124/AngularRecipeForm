@@ -33,6 +33,7 @@ export class IngredientFormComponent implements OnInit, OnDestroy {
     is_easy: false,
     recipe_style_id: 0,
     taste_level_id: 0,
+    recipe_link: '',
     riRecipeIngredients: []
   };
 

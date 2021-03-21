@@ -6,6 +6,7 @@ import {HomeInventoryComponent} from './pages/home-inventory/home-inventory.comp
 import {TopRecipesComponent} from './pages/top-recipes/top-recipes.component';
 import {EditRecipeFormComponent} from './pages/edit-recipe-form/edit-recipe-form.component';
 import {UpdateIngredientsComponent} from './pages/update-ingredients/update-ingredients.component';
+import {ShoppingListComponent} from './pages/shopping-list/shopping-list.component';
 
 
 //*/
@@ -33,6 +34,10 @@ const routes: Routes = [
   {
     path: 'top-recipes',
     component: TopRecipesComponent
+  },
+  {
+    path: 'shopping-list',
+    component: ShoppingListComponent
   }
 ];
 /*/
