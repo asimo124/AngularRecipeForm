@@ -11,7 +11,7 @@
     <nz-form-control [nzSm]="14" [nzXs]="24" >
       <app-select-recipe
         (onSelection)="selectedRecipe($event)"
-        [currentRecipeId]="recipeItem"
+        [currentRecipe]="recipeItem"
       ></app-select-recipe>
       <ng-container *ngIf="recipeItem && recipeItem.id">
         <a [routerLink]="'/edit-recipe/' + recipeItem.id" nz-button nzType="default"><i nz-icon nzType="edit" nzTheme="outline"></i></a>
