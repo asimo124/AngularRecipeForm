@@ -1,0 +1,20 @@
+<nz-select
+    #select
+    name="recipeItem"
+    nzPlaceHolder="Select a recipe"
+    nzShowSearch
+    nzAllowClear
+    nzServerSearch
+    [(ngModel)]="selectedRecipe"
+    (nzOnSearch)="searchChanged($event)"
+    (ngModelChange)="recipeSelected($event)"
+    [style.width]="'87%'"
+    [ngModelOptions]="{standalone: true}"
+>
+  <ng-container *ngFor="let recipe of recipeList" >
+    <nz-option
+      [nzLabel]="recipe.title"
+      [nzValue]="recipe"
+    ></nz-option>
+  </ng-container>
+</nz-select>&nbsp;

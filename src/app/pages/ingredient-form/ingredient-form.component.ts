@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 import {Ingredient, Recipe} from '../../models/recipe-form';
 import {IngredientFormService} from '../../services/ingredient-form.service';
 import {Subscription} from 'rxjs';
@@ -48,6 +48,12 @@ export class IngredientFormComponent implements OnInit, OnDestroy {
     price: 0
   };
 
+  currentRecipe: any;
+  @Output() onSelection: EventEmitter<any> = new EventEmitter<string>();
+
+  runningRequest: Subscription;
+  @ViewChild('select') select;
+
   constructor(
     private ingredientFormService: IngredientFormService,
   ) { }
@@ -59,7 +65,6 @@ export class IngredientFormComponent implements OnInit, OnDestroy {
         this.recipeItems = response.items;
 
         if (this.recipeItem && this.recipeItem.id) {
-          console.log('did re-check recipe item');
           this.recipeItem.riRecipeIngredients = [];
           const recipeItem = this.recipeItem;
           this.recipeItem = null;
@@ -132,8 +137,27 @@ export class IngredientFormComponent implements OnInit, OnDestroy {
     this.newIngredientTitle = '';
   }
 
-  selectedRecipe(recipeItem: Recipe) {
+  selectedRecipe(getRecipeItem: Recipe) {
 
+    if (getRecipeItem && getRecipeItem.id) {
+      this.recipeItem.riRecipeIngredients = [];
+      const recipeItem = this.recipeItem;
+      this.recipeItem = null;
+      const self = this;
+      this.recipeItems.forEach(function getItem(item) {
+        if (item.id == getRecipeItem.id) {
+          self.selectedIngredientItems = null;
+          self.selectedIngredientItems = [];
+          self.recipeItem = item;
+          item.riRecipeIngredients.forEach(function getIngred(ingred) {
+            self.selectedIngredientItems.push(ingred.ingredient);
+          });
+        }
+      });
+    }
+  }
+
+  searchChanged($event) {
 
   }
 

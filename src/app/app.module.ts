@@ -19,6 +19,7 @@ import { HomeInventoryComponent } from './pages/home-inventory/home-inventory.co
 import { TopRecipesComponent } from './pages/top-recipes/top-recipes.component';
 import { EditRecipeFormComponent } from './pages/edit-recipe-form/edit-recipe-form.component';
 import { UpdateIngredientsComponent } from './pages/update-ingredients/update-ingredients.component';
+import { SelectRecipeComponent } from './components/select-recipe/select-recipe.component';
 
 registerLocaleData(en);
 
@@ -30,7 +31,8 @@ registerLocaleData(en);
     HomeInventoryComponent,
     TopRecipesComponent,
     EditRecipeFormComponent,
-    UpdateIngredientsComponent
+    UpdateIngredientsComponent,
+    SelectRecipeComponent
   ],
   imports: [
     BrowserModule,

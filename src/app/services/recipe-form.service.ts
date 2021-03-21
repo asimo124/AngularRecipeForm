@@ -124,7 +124,7 @@ export class RecipeFormService {
       return;
     }
 
-    this.http.get<any>(this.apiUrl + '/recipe-form/view?id=' + id).subscribe(response => {
+    return this.http.get<any>(this.apiUrl + '/recipe-form/view?id=' + id).subscribe(response => {
         if (response && response.item) {
           if (response.item.last_date_made) {
             response.item.last_date_made = new Date(response.item.last_date_made);

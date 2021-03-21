@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {Recipe} from '../../models/recipe-form';
 import {IngredientFormService} from '../../services/ingredient-form.service';
@@ -12,7 +12,7 @@ import {TopRecipeFilters} from '../../models/top-recipes';
   templateUrl: './top-recipes.component.html',
   styleUrls: ['./top-recipes.component.scss']
 })
-export class TopRecipesComponent implements OnInit {
+export class TopRecipesComponent implements OnInit, OnDestroy {
 
   subs: Subscription[] = [];
 
@@ -87,5 +87,13 @@ export class TopRecipesComponent implements OnInit {
 
   searchRecipes() {
     this.topRecipesService.getTopRecipes(this.filters);
+  }
+
+  ngOnDestroy() {
+    let sub = this.subs.pop();
+    while (sub) {
+      sub.unsubscribe();
+      sub = this.subs.pop();
+    }
   }
 }

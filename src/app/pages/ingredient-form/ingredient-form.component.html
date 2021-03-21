@@ -9,19 +9,10 @@
   <nz-form-item>
     <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="email">Recipe</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" >
-      <nz-select
-        nzShowSearch
-        nzAllowClear
-        nzPlaceHolder="Select a recipe"
-        name="recipeItem"
-        [(ngModel)]="recipeItem"
-        (ngModelChange)="selectedRecipe($event)"
-        [style.width]="'87%'"
-      >
-        <ng-container *ngFor="let recipe of recipeItems" >
-          <nz-option [nzLabel]="recipe.title" [nzValue]="recipe"></nz-option>
-        </ng-container>
-      </nz-select>&nbsp;
+      <app-select-recipe
+        (onSelection)="selectedRecipe($event)"
+        [currentRecipeId]="recipeItem"
+      ></app-select-recipe>
       <ng-container *ngIf="recipeItem && recipeItem.id">
         <a [routerLink]="'/edit-recipe/' + recipeItem.id" nz-button nzType="default"><i nz-icon nzType="edit" nzTheme="outline"></i></a>
       </ng-container>
@@ -62,7 +53,7 @@
       </ng-template>
       <ng-template #newIngredient>
         <nz-input-group [nzAddOnAfter]="suffixIconButton">
-          <input nz-input placeholder="New Ingredient" name="newIngredientTitle" [(ngModel)]="newIngredientTitle"/>
+          <input nz-input placeholder="New Ingredient" name="newIngredientTitle" [(ngModel)]="newIngredientTitle" [ngModelOptions]="{standalone: true}"/>
         </nz-input-group>
       </ng-template>
       <ng-template #suffixIconButton>

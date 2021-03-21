@@ -10,12 +10,30 @@ import {UpdateIngredientsComponent} from './pages/update-ingredients/update-ingr
 
 //*/
 const routes: Routes = [
-  { path: '', component: RecipeFormComponent },
-  { path: 'edit-recipe/:id', component: EditRecipeFormComponent },
-  { path: 'ingredient-form', component: IngredientFormComponent },
-  { path: 'update-ingredients', component: UpdateIngredientsComponent },
-  { path: 'home-inventory', component: HomeInventoryComponent },
-  { path: 'top-recipes', component: TopRecipesComponent },
+  {
+    path: '',
+    component: RecipeFormComponent
+  },
+  {
+    path: 'edit-recipe/:id',
+    component: EditRecipeFormComponent
+  },
+  {
+    path: 'ingredient-form',
+    component: IngredientFormComponent
+  },
+  {
+    path: 'update-ingredients',
+    component: UpdateIngredientsComponent
+  },
+  {
+    path: 'home-inventory',
+    component: HomeInventoryComponent
+  },
+  {
+    path: 'top-recipes',
+    component: TopRecipesComponent
+  }
 ];
 /*/
 const routes: Routes = [];
