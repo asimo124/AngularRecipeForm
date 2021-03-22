@@ -21,6 +21,7 @@ import { EditRecipeFormComponent } from './pages/edit-recipe-form/edit-recipe-fo
 import { UpdateIngredientsComponent } from './pages/update-ingredients/update-ingredients.component';
 import { SelectRecipeComponent } from './components/select-recipe/select-recipe.component';
 import { ShoppingListComponent } from './pages/shopping-list/shopping-list.component';
+import { IngredientsByPriceComponent } from './pages/ingredients-by-price/ingredients-by-price.component';
 
 registerLocaleData(en);
 
@@ -34,7 +35,8 @@ registerLocaleData(en);
     EditRecipeFormComponent,
     UpdateIngredientsComponent,
     SelectRecipeComponent,
-    ShoppingListComponent
+    ShoppingListComponent,
+    IngredientsByPriceComponent
   ],
   imports: [
     BrowserModule,

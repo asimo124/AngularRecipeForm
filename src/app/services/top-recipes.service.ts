@@ -14,6 +14,10 @@ export class TopRecipesService {
   private topRecipeSource = new BehaviorSubject(this.topRecipeItems);
   public topRecipeList = this.topRecipeSource.asObservable();
 
+  private ingredientsByPriceItems: any = [];
+  private ingredientsByPriceSource = new BehaviorSubject(this.ingredientsByPriceItems);
+  public ingredientsByPriceList = this.ingredientsByPriceSource.asObservable();
+
   private shoppingListItems: any = [];
   private shoppingListSource = new BehaviorSubject(this.shoppingListItems);
   public shoppingListList = this.shoppingListSource.asObservable();
@@ -73,6 +77,21 @@ export class TopRecipesService {
     this.http.get<any>(this.apiUrl + '/top-recipes/top-recipes?' + params).subscribe(response => {
       if (response && response.items) {
         this.topRecipeSource.next(response.items);
+      }
+    },
+    (err) => {
+      console.log('error', 'Error loading Top Recipes : ' + err.error.message);
+    });
+  }
+
+  getIngredientsByPrice() {
+
+    this.http.get<any>(this.apiUrl + '/top-recipes/ingredients-by-price').subscribe(response => {
+
+      console.log('response: ', response);
+      if (response && response.items) {
+        console.log('resposne.items: ', response.items);
+        this.ingredientsByPriceSource.next(response.items);
       }
     },
     (err) => {

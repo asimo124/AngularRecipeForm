@@ -11,3 +11,4 @@ export class TopRecipeFilters {
   sort3: string;
   sort_dir3: string;
 }
+

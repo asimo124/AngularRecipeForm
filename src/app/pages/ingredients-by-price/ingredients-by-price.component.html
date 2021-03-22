@@ -1,0 +1,26 @@
+<h1>Ingredients By Price</h1>
+<div style="clear: both; height: 7px;"></div>
+
+<ng-container *ngIf="ingredientsList">
+  <nz-table
+      #basicTable
+      [nzData]="ingredientsList"
+      [nzPageSize]="1000000"
+      [nzPageIndex]="1"
+      [nzShowPagination]="false"
+      [style.width]="'100%'"
+  >
+    <thead>
+    <tr>
+      <th>Ingredient</th>
+      <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{ data.title }}</td>
+      <td>{{ data.price }}</td>
+    </tr>
+    </tbody>
+  </nz-table>
+</ng-container>

@@ -7,6 +7,7 @@ import {TopRecipesComponent} from './pages/top-recipes/top-recipes.component';
 import {EditRecipeFormComponent} from './pages/edit-recipe-form/edit-recipe-form.component';
 import {UpdateIngredientsComponent} from './pages/update-ingredients/update-ingredients.component';
 import {ShoppingListComponent} from './pages/shopping-list/shopping-list.component';
+import {IngredientsByPriceComponent} from './pages/ingredients-by-price/ingredients-by-price.component';
 
 
 //*/
@@ -38,6 +39,10 @@ const routes: Routes = [
   {
     path: 'shopping-list',
     component: ShoppingListComponent
+  },
+  {
+    path: 'ingredients-by-price',
+    component: IngredientsByPriceComponent
   }
 ];
 /*/
