@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {TopRecipesService} from '../../services/top-recipes.service';
 import {Subscription} from 'rxjs';
-import {IngredientByPrice} from '../../models/top-recipes';
 
 @Component({
   selector: 'app-ingredients-by-price',
