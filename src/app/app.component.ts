@@ -4,6 +4,10 @@ import {Subscription} from 'rxjs';
 import {Recipe} from './models/recipe-form';
 import {NzMessageService} from 'ng-zorro-antd';
 import {NavigationEnd, Router} from '@angular/router';
+import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
+import { authConfig } from './auth.config';
+import {OAuthService} from 'angular-oauth2-oidc';
+import {environment} from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +22,9 @@ export class AppComponent implements OnInit {
   width = 200;
   collapsedWidth = 0;
 
-  constructor(private router: Router) {
+  constructor(
+    private oauthService: OAuthService,
+    private router: Router) {
 
     router.events.subscribe((val) => {
 
@@ -36,6 +42,33 @@ export class AppComponent implements OnInit {
           });
         }
       });
+    });
+
+    this.configureWithNewConfigApi();
+  }
+
+  private configureWithNewConfigApi() {
+    this.oauthService.configure(authConfig);
+    this.oauthService.tokenValidationHandler = new JwksValidationHandler();
+    this.oauthService.setupAutomaticSilentRefresh();
+    this.oauthService.tryLogin().then(result => {
+
+      console.log('login worked!');
+
+    }).catch(e => {
+      // invalid login, refresh so they can try again
+
+
+      /**
+       * TODO - uncomment this
+       */
+      window.location.assign(environment.appLocation);
+
+
+    });
+
+    this.oauthService.events.subscribe(e => {
+      console.log('oauth/oidc event', e);
     });
   }
 

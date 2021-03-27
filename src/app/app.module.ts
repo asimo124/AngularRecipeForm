@@ -22,6 +22,8 @@ import { UpdateIngredientsComponent } from './pages/update-ingredients/update-in
 import { SelectRecipeComponent } from './components/select-recipe/select-recipe.component';
 import { ShoppingListComponent } from './pages/shopping-list/shopping-list.component';
 import { IngredientsByPriceComponent } from './pages/ingredients-by-price/ingredients-by-price.component';
+import {OAuthModule} from 'angular-oauth2-oidc';
+import {AuthGuard} from './authguard';
 
 registerLocaleData(en);
 
@@ -42,12 +44,21 @@ registerLocaleData(en);
     BrowserModule,
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    OAuthModule.forRoot({
+      resourceServer: {
+        allowedUrls: [environment.apiUrl],
+        sendAccessToken: true
+      }
+    }),
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     NgZorroAntdModule
   ],
-  providers: [{ provide: NZ_I18N, useValue: en_US }],
+  providers: [
+    AuthGuard,
+    { provide: NZ_I18N, useValue: en_US}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

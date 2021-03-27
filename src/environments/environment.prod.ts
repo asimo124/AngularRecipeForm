@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+  production: true,
+  apiUrl: 'https://advancedapi.hawleywebdesign.com',
+  apiClientId: 'advancedApi',
+  appLocation: window.location.origin+'/index.html',
 };
