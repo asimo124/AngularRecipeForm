@@ -1,4 +1,4 @@
 
 export const siteSettings = {
-  apiUrl: 'https://advancedapi.hawleywebdesign.com'
+  apiUrl: 'https://api.hawleywebdesign.com'
 }

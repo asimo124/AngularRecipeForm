@@ -17,7 +17,7 @@ const routes: Routes = [
     path: '',
     component: RecipeFormComponent,
     // canActivate: [AuthGuard],
-  }
+  },
   {
     path: 'edit-recipe/:id',
     component: EditRecipeFormComponent,
