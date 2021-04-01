@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://advancedapi.hawleywebdesign.com',
+  apiUrl: 'https://api.hawleywebdesign.com',
   apiClientId: 'advancedApi',
   appLocation: window.location.origin+'/index.html',
 };
