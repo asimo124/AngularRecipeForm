@@ -18,9 +18,6 @@ export class AuthGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (this.isLoggedIn()) {
       console.log('is logged in - Yes!!!');
-      if(state.url.indexOf('/e/admin') == 0) {
-        return this.isE2l;
-      }
       return true;
     } else {
       const tree: UrlTree = this.router.parseUrl('/');

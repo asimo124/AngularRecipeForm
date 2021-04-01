@@ -22,7 +22,7 @@ import { UpdateIngredientsComponent } from './pages/update-ingredients/update-in
 import { SelectRecipeComponent } from './components/select-recipe/select-recipe.component';
 import { ShoppingListComponent } from './pages/shopping-list/shopping-list.component';
 import { IngredientsByPriceComponent } from './pages/ingredients-by-price/ingredients-by-price.component';
-import {OAuthModule} from 'angular-oauth2-oidc';
+import {OAuthModule, OAuthStorage} from 'angular-oauth2-oidc';
 import {AuthGuard} from './authguard';
 
 registerLocaleData(en);
@@ -57,7 +57,8 @@ registerLocaleData(en);
   ],
   providers: [
     AuthGuard,
-    { provide: NZ_I18N, useValue: en_US}
+    { provide: NZ_I18N, useValue: en_US},
+    { provide: OAuthStorage, useValue: localStorage },
   ],
   bootstrap: [AppComponent]
 })

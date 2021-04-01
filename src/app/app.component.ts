@@ -58,11 +58,12 @@ export class AppComponent implements OnInit {
     }).catch(e => {
       // invalid login, refresh so they can try again
 
+      console.log('login did not work');
 
       /**
        * TODO - uncomment this
        */
-      window.location.assign(environment.appLocation);
+      // window.location.assign(environment.appLocation);
 
 
     });

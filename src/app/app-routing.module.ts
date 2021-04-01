@@ -8,41 +8,55 @@ import {EditRecipeFormComponent} from './pages/edit-recipe-form/edit-recipe-form
 import {UpdateIngredientsComponent} from './pages/update-ingredients/update-ingredients.component';
 import {ShoppingListComponent} from './pages/shopping-list/shopping-list.component';
 import {IngredientsByPriceComponent} from './pages/ingredients-by-price/ingredients-by-price.component';
+import {AuthGuard} from './authguard';
 
 
 //*/
 const routes: Routes = [
   {
     path: '',
-    component: RecipeFormComponent
+    component: RecipeFormComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: '/add-recipe',
+    component: RecipeFormComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'edit-recipe/:id',
-    component: EditRecipeFormComponent
+    component: EditRecipeFormComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'ingredient-form',
-    component: IngredientFormComponent
+    component: IngredientFormComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'update-ingredients',
-    component: UpdateIngredientsComponent
+    component: UpdateIngredientsComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'home-inventory',
-    component: HomeInventoryComponent
+    component: HomeInventoryComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'top-recipes',
-    component: TopRecipesComponent
+    component: TopRecipesComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'shopping-list',
-    component: ShoppingListComponent
+    component: ShoppingListComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'ingredients-by-price',
-    component: IngredientsByPriceComponent
+    component: IngredientsByPriceComponent,
+    canActivate: [AuthGuard],
   }
 ];
 /*/

@@ -4,6 +4,7 @@ import {BehaviorSubject} from 'rxjs';
 import { siteSettings } from '../models/site-settings';
 import {Recipe} from '../models/recipe-form';
 import {NzMessageService} from 'ng-zorro-antd';
+import {OAuthService} from 'angular-oauth2-oidc';
 
 @Injectable({
   providedIn: 'root'
@@ -42,7 +43,8 @@ export class RecipeFormService {
 
   constructor(
     private http: HttpClient,
-    private messageService: NzMessageService
+    private messageService: NzMessageService,
+    private oauthService: OAuthService,
   ) { }
 
   setBody(recipeItem: Recipe) {
@@ -146,7 +148,17 @@ export class RecipeFormService {
 
   getProteins() {
 
-    this.http.get<any>(this.apiUrl + '/recipe-form/proteins').subscribe(response => {
+    //*/
+    const headerDict = {
+      //'Authorization:': 'Bearer ' + this.oauthService.getAccessToken(),
+    };
+
+    const requestOptions = {
+      //headers: new HttpHeaders(headerDict),
+    };
+    //*//
+
+    this.http.get<any>(this.apiUrl + '/recipe-form/proteins', requestOptions).subscribe(response => {
       this.proteinSource.next(response);
     },
     (err) => {
