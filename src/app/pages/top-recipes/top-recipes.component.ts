@@ -40,6 +40,7 @@ export class TopRecipesComponent implements OnInit, OnDestroy {
   recipeStyleItems: any[] = [];
 
   apiUrl = siteSettings.apiUrl;
+  imageUrl = siteSettings.imageUrl;
 
   constructor(
     private ingredientFormService: IngredientFormService,

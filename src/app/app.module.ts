@@ -24,6 +24,8 @@ import { ShoppingListComponent } from './pages/shopping-list/shopping-list.compo
 import { IngredientsByPriceComponent } from './pages/ingredients-by-price/ingredients-by-price.component';
 import {OAuthModule, OAuthStorage} from 'angular-oauth2-oidc';
 import {AuthGuard} from './authguard';
+import { GuestComponent } from './pages/guest/guest.component';
+import { LogoutComponent } from './pages/logout/logout.component';
 
 registerLocaleData(en);
 
@@ -38,7 +40,9 @@ registerLocaleData(en);
     UpdateIngredientsComponent,
     SelectRecipeComponent,
     ShoppingListComponent,
-    IngredientsByPriceComponent
+    IngredientsByPriceComponent,
+    GuestComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

@@ -63,7 +63,7 @@ export class AppComponent implements OnInit {
       /**
        * TODO - uncomment this
        */
-      // window.location.assign(environment.appLocation);
+      window.location.assign(environment.appLocation);
 
 
     });
