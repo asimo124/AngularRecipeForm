@@ -111,7 +111,7 @@
           <div class="inner-recipe-col">
             <div class="img_holder">
               <ng-container *ngIf="recipe.image_path" >
-                <img [src]="apiUrl + '/image.php?f=/' + recipe.image_path + '&w=150&h=220&effect=crop'" />
+                <img [src]="imageUrl + '/image.php?f=/' + recipe.image_path + '&w=150&h=220&effect=crop'" />
               </ng-container>
               <ng-container *ngIf="!recipe.image_path" >
                 <img src="https://via.placeholder.com/150x220.png" />
