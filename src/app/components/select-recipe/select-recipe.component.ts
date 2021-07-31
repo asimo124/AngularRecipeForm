@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
 import {Recipe} from '../../models/recipe-form';
 import {RecipeFormService} from '../../services/recipe-form.service';
 import {IngredientFormService} from '../../services/ingredient-form.service';
@@ -12,7 +12,7 @@ import {debounceTime} from 'rxjs/operators';
   templateUrl: './select-recipe.component.html',
   styleUrls: ['./select-recipe.component.scss']
 })
-export class SelectRecipeComponent implements OnInit, OnChanges, OnDestroy {
+export class SelectRecipeComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit {
 
   @Input() currentRecipe: Recipe; // currently selected school
   @Input() setClose
@@ -32,7 +32,8 @@ export class SelectRecipeComponent implements OnInit, OnChanges, OnDestroy {
 
   constructor(
     private http: HttpClient,
-    private ingredientFormService: IngredientFormService
+    private ingredientFormService: IngredientFormService,
+    private renderer: Renderer2
   ) { }
 
   ngOnInit() {
@@ -82,6 +83,26 @@ export class SelectRecipeComponent implements OnInit, OnChanges, OnDestroy {
   ngOnDestroy(): void {
     if (this.runningRequest) { this.runningRequest.unsubscribe(); }
     if (this.searchCaller) { this.searchCaller.unsubscribe(); }
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      const allEles: any = document.querySelectorAll('nz-select nz-select-top-control nz-select-search input');
+      for (const ele of allEles) {
+        this.renderer.removeAttribute(ele, 'readonly');
+      }
+    }, 1500);
+
+  }
+
+  onBlur() {
+    console.log('blur triggered');
+    setTimeout(() => {
+      const allEles: any = document.querySelectorAll('nz-select nz-select-top-control nz-select-search input');
+      for (const ele of allEles) {
+        this.renderer.removeAttribute(ele, 'readonly');
+      }
+    }, 500);
   }
 
 }

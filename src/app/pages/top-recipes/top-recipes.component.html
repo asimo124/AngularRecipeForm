@@ -150,6 +150,7 @@
             <th>High Price</th>
             <th>Difficulty Level</th>
             <th>Taste Level</th>
+            <th>Actions</th>
           </tr>
           </thead>
           <tbody>
@@ -161,6 +162,17 @@
             <td>{{ data.recipe_high_price }}</td>
             <td>{{ data.difficulty_level }}</td>
             <td>{{ data.taste_level }}</td>
+            <td>
+              <a
+                nz-tooltip
+                [nzTooltipTitle]="'Edit Recipe'"
+                [routerLink]="'/edit-recipe/' + data.id" nz-button nzType="default"><i nz-icon nzType="edit" nzTheme="outline"></i></a>&nbsp;
+              <a
+                nz-tooltip
+                (click)="addToShoppingList(data.riRecipeIngredients, data.id)"
+                [nzTooltipTitle]="'Add To Shopping List'"
+                nz-button nzType="default"><i nz-icon nzType="shopping-cart" nzTheme="outline"></i></a>
+            </td>
           </tr>
           </tbody>
         </nz-table>

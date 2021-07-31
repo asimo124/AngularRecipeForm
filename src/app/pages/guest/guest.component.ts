@@ -36,7 +36,7 @@ export class GuestComponent implements OnInit {
           sessionStorage.removeItem('afterLoginUrl');
           self.router.navigate([redirectUrl]);
         } else {
-          self.router.navigate(['/add-recipe']);
+          self.router.navigate(['/top-recipes']);
         }
       }
     },200);

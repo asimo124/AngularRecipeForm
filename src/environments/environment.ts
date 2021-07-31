@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  /*/
-  apiUrl: 'https://advancedapi.hawleywebdesign.com',
   //*/
+  apiUrl: 'https://advancedapi.hawleywebdesign.com',
+  /*/
   apiUrl: 'http://127.0.0.1:8020',
   //*/
   apiClientId: 'advancedApi',
