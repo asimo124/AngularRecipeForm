@@ -26,6 +26,7 @@ import {OAuthModule, OAuthStorage} from 'angular-oauth2-oidc';
 import {AuthGuard} from './authguard';
 import { GuestComponent } from './pages/guest/guest.component';
 import { LogoutComponent } from './pages/logout/logout.component';
+import { ContactInfoComponent } from './pages/contact-info/contact-info.component';
 
 registerLocaleData(en);
 
@@ -42,7 +43,8 @@ registerLocaleData(en);
     ShoppingListComponent,
     IngredientsByPriceComponent,
     GuestComponent,
-    LogoutComponent
+    LogoutComponent,
+    ContactInfoComponent
   ],
   imports: [
     BrowserModule,

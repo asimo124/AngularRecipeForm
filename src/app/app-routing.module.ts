@@ -11,6 +11,7 @@ import {IngredientsByPriceComponent} from './pages/ingredients-by-price/ingredie
 import {AuthGuard} from './authguard';
 import {GuestComponent} from './pages/guest/guest.component';
 import {LogoutComponent} from './pages/logout/logout.component';
+import {ContactInfoComponent} from './pages/contact-info/contact-info.component';
 
 
 //*/
@@ -58,6 +59,11 @@ const routes: Routes = [
   {
     path: 'ingredients-by-price',
     component: IngredientsByPriceComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'contact-info',
+    component: ContactInfoComponent,
     canActivate: [AuthGuard],
   },
   {
